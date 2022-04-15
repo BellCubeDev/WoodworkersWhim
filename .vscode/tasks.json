@@ -2,7 +2,9 @@
     "tasks": [{
         "args": [
             "${workspaceFolder}\\dist\\",
-            "${workspaceFolder}\\compiled\\WoodworkersWhim-1.0.0.zip"
+            "${workspaceFolder}\\dist-translateable\\",
+            "${workspaceFolder}\\compiled\\WoodworkersWhim-1.0.0.zip",
+            "${workspaceFolder}\\compiled\\WoodworkersWhim-translateable-1.0.0.zip"
         ],
         "command": ".\\.vscode\\zip.bat",
         "group": {

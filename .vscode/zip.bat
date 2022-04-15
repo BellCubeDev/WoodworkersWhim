@@ -1,16 +1,23 @@
 @echo off
 ECHO [33mNOTICE: 7-zip MUST be installed to use this batch program!
-cd "%~1"
+cd "%~3"
 ECHO [0m
 ECHO Deleting any previous outputs...
 :: I call a new instance of CMD because I was experiencing oddities using either rd or del in a Batch script.
 :: It would always throw "Access is denied"
-cmd /c "del /q ""%~2"" "
+cmd /c "del /q ""%~1"" "
 ECHO.
 ECHO Zipping first folder...
 ECHO.
 ECHO [33m
-7z a -aoa -spe -tzip "%~2" -ir!*
+7z a -aoa -spe -tzip "%~1" -ir!*
+cd "%~2"
+cmd /c "del /q ""%~4"" "
+ECHO.
+ECHO Zipping second folder...
+ECHO.
+ECHO [33m
+7z a -aoa -spe -tzip "%~4" -ir!*
 ECHO [0m
 SetLocal EnableDelayedExpansion
 set count=3
