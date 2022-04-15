@@ -1,0 +1,85 @@
+[b][size=6]Woodworker's Whim[/size][/b]
+Have you ever been frustrated when you went to chop wood, only for the game to turn you away for lack of an axe—even though there was one leaning against the wall [b][i]right there[/i][/b]? I sure have. I think it's high time to put an end to this madness!
+
+This is where Woodworker's Whim comes in. With this ultra-compatible modification, you can chop wood by borrowing any vanilla-compatible wood-chopping axe within a reasonable (and configurable!) radius.
+
+[size=4][b]Configuration[/b][/size]
+Woodworker's Whim comes with an MCM for your configuration pleasure. Its setting[s]s[/s] can also be configured via console command.
+
+[size=3][b]Allow NPCs[/b][/size]
+A slider controlling how far away the axe has to be to qualify. Uses
+Default: [b]False[/b]. Zero is treated as false, any other value is treated as true.
+[code]set WWWRequireNPCAxeBoolValue to {VALUE}[/code]
+
+[size=3][b]Search Radius[/b][/size]
+Type: [b]Slider[/b]
+Default: [b]300[/b]
+Slider Range: [b]0[/b]–[b]1500[/b]
+Note that any non-positive value (0 is neither positive nor negative) will prevent the mod from functioning altogether.
+[code]set WWWSearchRadiusGlobValue to {VALUE}[/code]
+
+[size=3][b]Apply to Wood Chopping Blocks?[/b][/size]
+Will the system search for items when interacting with Wood Chopping Blocks?
+Type: [b]Boolean[/b] (true/false, 1/0)
+Default: [b]True[/b]
+[code]set WWW_Bool_ChoppingBlock_Value to {VALUE}[/code]
+
+[size=3][b]Apply to Wood Chopping Blocks for NPCs?[/b][/size]
+Will the system search for items when NPCs use Wood Whopping Blocks as well?
+NOTE: NPCs do not interact with these workstations in the same way that the player does. This may create visual oddities.
+Type: [b]Boolean[/b] (true/false, 1/0)
+Default: [b]False[/b]
+[code]set WWW_Bool_ChoppingBlock_NPCs_Value to {VALUE}[/code]
+
+
+[size=3][b]Apply to Ore Veins?[/b][/size]
+Will the system search for items when interacting with Ore Veins?
+Type: [b]Boolean[/b] (true/false, 1/0)
+Default: [b]True[/b]
+[code]set WWW_Bool_OreVein_Value to {VALUE}[/code]
+
+[size=3][b]Apply to Ore Veins for NPCs?[/b][/size]
+Will the system search for items when NPCs use Ore Veins as well?
+NOTE: NPCs do not interact with these workstations in the same way that the player does. This may create visual oddities.
+Type: [b]Boolean[/b] (true/false, 1/0)
+Default: [b]False[/b]
+[code]set WWW_Bool_OreVein_NPCs_Value to {VALUE}[/code]
+
+[size=3][b]Apply to Stone Quaries?[/b][/size]
+Will the system search for items when interacting with Stone Quaries?
+Type: [b]Boolean[/b] (true/false, 1/0)
+Default: [b]True[/b]
+[code]set WWW_Bool_StoneQuarry_Value to {VALUE}[/code]
+
+[size=3][b]Apply to Stone Quaries for NPCs?[/b][/size]
+Will the system search for items when NPCs use Stone Quaries as well?
+NOTE: NPCs do not interact with these workstations in the same way that the player does. This may create visual oddities.
+Type: [b]Boolean[/b] (true/false, 1/0)
+Default: [b]False[/b]
+[code]set WWW_Bool_StoneQuarry_NPCs_Value to {VALUE}[/code]
+
+[size=3][b]Apply to Clay Deposits?[/b][/size]
+Will the system search for items when interacting with Clay Deposits?
+Type: [b]Boolean[/b] (true/false, 1/0)
+Default: [b]True[/b]
+[code]set WWW_Bool_ClayDeposit_Value to {VALUE}[/code]
+
+[size=3][b]Apply to Clay Deposits for NPCs?[/b][/size]
+Will the system search for items when NPCs use Clay Deposits as well?
+NOTE: NPCs do not interact with these workstations in the same way that the player does. This may create visual oddities.
+Type: [b]Boolean[/b] (true/false, 1/0)
+Default: [b]False[/b]
+[code]set WWW_Bool_ClayDeposit_NPCs_Value to {VALUE}[/code]
+
+[b][size=6]How It's Done[/size][/b]
+Woodworker's Whim was designed from the start to be as compatible as I could manage. Instead of editing the script, it attaches its own [i]alongside[/i] the vanilla script. Instead of storing both possible axes as FormIDs, I read from the same list Bethesda checks against in the wood chopping script. Instead of editing the chopping blocks in the world, I edit them at the "blueprint" (base object) level. I also took the liberty of reducing the script lag to as little as I could manage. In fact, most of the heavy processing isn't even handled by a script.
+
+In addition, I've taken special care to impliment countless failsafes for the mod (to the point where my script will break irrepriably less frequently than the ResourceFurnitureScript itself—the script that actually gives you the wood).
+
+With compatibility and speed (the part people [i]really[/i] care about) out of the way, we can talk in more technical terms. Woodworker's Whim uses a Reference Alias to get things done. They're a powerful component of Quests that can do all sorts of crazy things—injecting scripts, keywords, AI Packages, changing names, creating entire new objects on command, stopping you from selling certain things, and even finding objects in the world. That last part is my focus here. This is relatively quite fast and is as reliable as it gets in a Bethesda title.
+
+[b][size=6]A Bit of History[/size][/b]
+Woodworker's Whim—name and all—came from my first project, [url=https://www.nexusmods.com/skyrimspecialedition/mods/47087]Additional Clockwork[/url]. I was brand-new to Skyrim modding, creating some abnormal issues with this whim-satisfying mod (but had no idea how to fix them). But now, with much more experience, I thought of a way around them.
+
+And so after an almost complete rework of the backend using a much more powerful method to find an axe, I realized that this many non-Clockwork users might love the mod, too. And so, it got its own mod page!
+
