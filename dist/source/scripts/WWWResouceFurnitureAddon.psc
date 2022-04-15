@@ -24,11 +24,11 @@ ObjectReference[] lastActionRefs
 Int lastActionRefIndexBackend
 Int Property lastActionRefIndex Hidden
     Int Function Get()
-        DebugTest()
+        ;DebugTest()
         return lastActionRefIndexBackend
     EndFunction
     Function Set(Int aiNewValue)
-        DebugTest()
+        ;DebugTest()
         If aiNewValue < 0 
             lastActionRefIndexBackend = 15
         ElseIf aiNewValue > 15
@@ -46,9 +46,9 @@ Bool working = true
 
 Event OnInit()
     ;/;
-    Debug.StartScriptProfiling("WWWResouceFurnitureAddon")
+    ;Debug.StartScriptProfiling("WWWResouceFurnitureAddon")
     ;//;
-    DebugTest()
+    ;DebugTest()
     lastActionRefs = new ObjectReference[8]
     akBlockAlias = WWWBackendQuest.GetAlias(1) as ReferenceAlias
     akAxe = WWWBackendQuest.GetAlias(2) as ReferenceAlias
@@ -56,20 +56,20 @@ Event OnInit()
 EndEvent
 
 Event OnCellAttach()
-    DebugTest()
-    Debug.Trace("[BCD-WWW] Cell attached. Resetting.")
+    ;DebugTest()
+    ;Debug.Trace("[BCD-WWW] Cell attached. Resetting.")
     RegisterForSingleUpdate(0)
 
 EndEvent
 
 Event OnCellDetach()
-    DebugTest()
-    Debug.Trace("[BCD-WWW] Cell detached. Resetting.")
+    ;DebugTest()
+    ;Debug.Trace("[BCD-WWW] Cell detached. Resetting.")
     RegisterForSingleUpdate(0)
 EndEvent
 
 Function preReturnOnActivate(ObjectReference akActionRef, Bool doFakeAxe = false)
-    Debug.Trace("[BCD-WWW] Running ResourceFurnitureScript's OnActivate event...")
+    ;Debug.Trace("[BCD-WWW] Running ResourceFurnitureScript's OnActivate event...")
     Form fakeAxe
     If doFakeAxe
         fakeAxe = requiredItemList.GetAt(0)
@@ -80,56 +80,56 @@ Function preReturnOnActivate(ObjectReference akActionRef, Bool doFakeAxe = false
     If doFakeAxe
         akActionRef.RemoveItem(fakeAxe, abSilent = true)
     EndIf
-    Debug.Trace("[BCD-WWW] Running ResourceFurnitureScript's OnActivate event finished.")
+    ;Debug.Trace("[BCD-WWW] Running ResourceFurnitureScript's OnActivate event finished.")
     RegisterForSingleUpdate(0)
 EndFunction
 
 auto STATE normal
     Event OnBeginState()
-        DebugTest()
+        ;DebugTest()
     EndEvent
 
     Event OnEndState()
-        DebugTest()
+        ;DebugTest()
     EndEvent
 
     Event OnActivate(ObjectReference akActionRef)
         GoToState("busy")
-        DebugTest()
-        Debug.Trace("[BCD-WWW] OnActivate received. akActionRef: " + akActionRef)
+        ;DebugTest()
+        ;Debug.Trace("[BCD-WWW] OnActivate received. akActionRef: " + akActionRef)
         Bool isNPC = false
 
-        Debug.Trace("[BCD-WWW] Checking if we're already doin' stuff...")
+        ;Debug.Trace("[BCD-WWW] Checking if we're already doin' stuff...")
         If working || akAxeRef
-            Debug.Trace("[BCD-WWW] Already working/in use. Returning. CAUSE:\n                          CAUSE:\n                                    working: " + working + "\n                                    akAxeRef: " + akAxeRef)
+            ;Debug.Trace("[BCD-WWW] Already working/in use. Returning. CAUSE:\n                          CAUSE:\n                                    working: " + working + "\n                                    akAxeRef: " + akAxeRef)
             return
         EndIf
 
-        Debug.Trace("[BCD-WWW] Checking if the user actually wants us to look for an axe...")
+        ;Debug.Trace("[BCD-WWW] Checking if the user actually wants us to look for an axe...")
 
         If ConditionBool.GetValue() == 0.0
-            Debug.Trace("[BCD-WWW] MCM setting for this object is false. Returning.")
+            ;Debug.Trace("[BCD-WWW] MCM setting for this object is false. Returning.")
             preReturnOnActivate(akActionRef)
             return
         EndIf
 
-        Debug.Trace("[BCD-WWW] Checking Player and NPC conditions")
+        ;Debug.Trace("[BCD-WWW] Checking Player and NPC conditions")
 
         If akActionRef == PlayerREF
-            Debug.Trace("[BCD-WWW] Player is the activatee! Checking if they're in combat...")
-            Debug.Trace("[BCD-WWW] PlayerREF.IsInCombat() = " + PlayerREF.IsInCombat())
+            ;Debug.Trace("[BCD-WWW] Player is the activatee! Checking if they're in combat...")
+            ;Debug.Trace("[BCD-WWW] PlayerREF.IsInCombat() = " + PlayerREF.IsInCombat())
             If PlayerREF.IsInCombat()
-                Debug.Trace("[BCD-WWW] Player is in combat. Returning.")
+                ;Debug.Trace("[BCD-WWW] Player is in combat. Returning.")
                 preReturnOnActivate(akActionRef, true)
                 return
             EndIf
         Else ; If akActionRef != PlayerREF
-            Debug.Trace("[BCD-WWW] akActionRef is not PlayerREF. Checking if that's even allowed.")
+            ;Debug.Trace("[BCD-WWW] akActionRef is not PlayerREF. Checking if that's even allowed.")
             If ConditionBoolNPCs.GetValue()
-                Debug.Trace("[BCD-WWW] NPCs are allowed! Rejoyce!")
+                ;Debug.Trace("[BCD-WWW] NPCs are allowed! Rejoyce!")
                 isNPC = True
             Else
-                Debug.Trace("[BCD-WWW] akActionRef is not PlayerREF. Wait, that's illegal. akActionRef: " + akActionRef)
+                ;Debug.Trace("[BCD-WWW] akActionRef is not PlayerREF. Wait, that's illegal. akActionRef: " + akActionRef)
                 preReturnOnActivate(akActionRef)
                 return
             EndIf
@@ -140,24 +140,24 @@ auto STATE normal
             return
         EndIf
 
-        Debug.Trace("[BCD-WWW] Checking if the furniture is already in use...")
+        ;Debug.Trace("[BCD-WWW] Checking if the furniture is already in use...")
 
         If !isNPC && IsFurnitureInUse(true)
-            Debug.Trace("[BCD-WWW] Furniture is already in use.")
+            ;Debug.Trace("[BCD-WWW] Furniture is already in use.")
             working = false
             GoToState("normal")
             parent.OnActivate(akActionRef)
             return
         EndIf
 
-        Debug.Trace("[BCD-WWW] Starting to look for a reference. Hold on tight!")
+        ;Debug.Trace("[BCD-WWW] Starting to look for a reference. Hold on tight!")
         working = true
         lastActionRefs[lastActionRefIndex] = akActionRef
         lastActionRefIndex += 1
 
         ; Begin Reference Aqqusition
 
-        Debug.Trace("[BCD-WWW] Starting quest...")
+        ;Debug.Trace("[BCD-WWW] Starting quest...")
         ; Send the start message with this refernce, waiting until the OK is recieved
         WWWQuestStartKWD.SendStoryEventAndWait(akRef1 = Self)
 
@@ -168,33 +168,33 @@ auto STATE normal
             Int i = 10
             While !(WWWBackendQuest.IsStarting() || WWWBackendQuest.IsRunning()) && i
                 i -= 1
-                Debug.Trace("[BCD-WWW] Waiting for quest to enter startup. Tries left: " + i)
+                ;Debug.Trace("[BCD-WWW] Waiting for quest to enter startup. Tries left: " + i)
                 Utility.WaitMenuMode(0.1)
             EndWhile
 
             If i == 0
-                Debug.Trace("[BCD-WWW] Quest failed to start. Returning. akActionRef = " + akActionRef)
+                ;Debug.Trace("[BCD-WWW] Quest failed to start. Returning. akActionRef = " + akActionRef)
                 preReturnOnActivate(akActionRef)
                 return
             EndIf
 
-            Debug.Trace("[BCD-WWW] Quest is at least starting.")
+            ;Debug.Trace("[BCD-WWW] Quest is at least starting.")
 
             i = 10
             While !WWWBackendQuest.IsRunning() && i
                 i -= 1
-                Debug.Trace("[BCD-WWW] Waiting for quest to start completely. Tries left: " + i)
+                ;Debug.Trace("[BCD-WWW] Waiting for quest to start completely. Tries left: " + i)
                 Utility.WaitMenuMode(0.1)
             EndWhile
 
             If i == 0
-                Debug.Trace("[BCD-WWW] Failed to fully start quest. Returning. akActionRef = " + akActionRef)
+                ;Debug.Trace("[BCD-WWW] Failed to fully start quest. Returning. akActionRef = " + akActionRef)
                 preReturnOnActivate(akActionRef)
                 return
             EndIf
 
-            Debug.Trace("[BCD-WWW] Quest started!")
-            DebugTest()
+            ;Debug.Trace("[BCD-WWW] Quest started!")
+            ;DebugTest()
 
         ; ========================
         ; Failsafe - Alias Retrieval
@@ -205,7 +205,7 @@ auto STATE normal
             While !akAxeRef && i
                 akAxeRef = akAxe.GetReference()
                 i -= 1
-                Debug.Trace("[BCD-WWW] Trying to get axe reference, got " + akAxeRef + " (" + akAxeRef.GetBaseObject().GetName() + "), tries left: " + i)
+                ;Debug.Trace("[BCD-WWW] Trying to get axe reference, got " + akAxeRef + " (" + akAxeRef.GetBaseObject().GetName() + "), tries left: " + i)
                 Utility.WaitMenuMode(0.1)
             EndWhile
 
@@ -215,35 +215,35 @@ auto STATE normal
         
             ; If we failed to find a reference, abandon ship!
             If !akAxeRef
-                Debug.Trace("[BCD-WWW] Failed to get tracked item. ABANDOMING SHIP. akActionRef = " + akActionRef)
+                ;Debug.Trace("[BCD-WWW] Failed to get tracked item. ABANDOMING SHIP. akActionRef = " + akActionRef)
                 preReturnOnActivate(akActionRef)
                 return
             EndIf
-            DebugTest()
+            ;DebugTest()
 
         ; ========================
         ; Meat & Potatoes
         ; ========================
             
-        Debug.Trace("[BCD-WWW] Got Reference: " + akAxeRef + " (" + akAxeRef.GetBaseObject().GetName() + ")")
+        ;Debug.Trace("[BCD-WWW] Got Reference: " + akAxeRef + " (" + akAxeRef.GetBaseObject().GetName() + ")")
 
         ; Show message
         If akActionRef == PlayerREF
             ItemTakenMsg.Show()
-            Debug.Trace("[BCD-WWW] Player took item. Message show.")
+            ;Debug.Trace("[BCD-WWW] Player took item. Message show.")
         EndIf
 
-        Debug.Trace("[BCD-WWW] Stopping quest.")
+        ;Debug.Trace("[BCD-WWW] Stopping quest.")
         WWWBackendQuest.Stop()
-        DebugTest()
+        ;DebugTest()
 
         ; Ensure that the script is ready for activation
-        DebugTest()
+        ;DebugTest()
         ; Go directly to ResourceFurnitureScript and pass the OnActivate.
-        Debug.Trace("[BCD-WWW] Furniture interaction started. Finalizing OnActivate()")
+        ;Debug.Trace("[BCD-WWW] Furniture interaction started. Finalizing OnActivate()")
 
         ; "Pick Up" the item
-        Debug.Trace("[BCD-WWW] Picking up axe...")
+        ;Debug.Trace("[BCD-WWW] Picking up axe...")
         akActionRef.AddItem(akAxeRef.GetBaseObject(), 1,  ;/silent = /;true)
         akAxeRef.DisableNoWait()
 
@@ -259,7 +259,7 @@ EndState
 
 Event OnUpdate()
     If working || IsFurnitureInUse(true)
-        Debug.Trace("[BCD-WWW] Furniture is still in use.")
+        ;Debug.Trace("[BCD-WWW] Furniture is still in use.")
         RegisterForSingleUpdate(1)
         return
     EndIf
@@ -270,22 +270,22 @@ EndEvent
 
 State busy
     Event OnBeginState()
-        DebugTest()
-        Debug.Trace("[BCD-WWW] Entered Busy state")
+        ;DebugTest()
+        ;Debug.Trace("[BCD-WWW] Entered Busy state")
     EndEvent
     Event OnEndState()
-        DebugTest()
-        Debug.Trace("[BCD-WWW] Exited Busy state. So long and thanks for all the fish.")
+        ;DebugTest()
+        ;Debug.Trace("[BCD-WWW] Exited Busy state. So long and thanks for all the fish.")
     EndEvent
     ; Talk to the hand
 EndState
 
 ; Will run regardless of the current state
 Event OnAnimationEvent(ObjectReference akSource, string asEventName)
-    DebugTest()
-    Debug.Trace("[BCD-WWW] Animation Event " + asEventName + " received from " + akSource)
+    ;DebugTest()
+    ;Debug.Trace("[BCD-WWW] Animation Event " + asEventName + " received from " + akSource)
     If asEventName == "IdleFurnitureExit"
-        Debug.Trace("[BCD-WWW] Furniture interaction ended. Tieing up loose ends.")
+        ;Debug.Trace("[BCD-WWW] Furniture interaction ended. Tieing up loose ends.")
         UnregisterForUpdate()
         preReturn()
     EndIf
@@ -295,8 +295,8 @@ EndEvent
 ; Used to "take out the trash"
 ; Centralization - Return
 Function preReturn(;/ /;)
-    DebugTest()
-    Debug.Trace("[BCD-WWW] Calling pre-return function.")
+    ;DebugTest()
+    ;Debug.Trace("[BCD-WWW] Calling pre-return function.")
     GoToState("busy")
     working = true
 
@@ -315,10 +315,10 @@ Function preReturn(;/ /;)
             EndIf
             i += 1
             EndWhile
-        Debug.Trace("[BCD-WWW] Replaced axe "+tempHoldAxeRef+". Clearing variable...")
+        ;Debug.Trace("[BCD-WWW] Replaced axe "+tempHoldAxeRef+". Clearing variable...")
     EndIf
 
-    Debug.Trace("[BCD-WWW] No longer working.")
+    ;Debug.Trace("[BCD-WWW] No longer working.")
     int i = 0
     int iMax = lastActionRefs.length
     while i < iMax
@@ -335,12 +335,12 @@ Function preReturn(;/ /;)
     EndIf
 EndFunction
 
-;//;
+;/;
 
-Function DebugTest()
+Function ;DebugTest()
     ;/
-    Debug.Trace("[BCD-WWW] Debug test.\nIs furniture in use? " + self.IsFurnitureInUse(false) + ". And ignoring reserved? " + self.IsFurnitureInUse(true) + "\nIs working? " + working + "\nLast action refs: " + lastActionRefs + "\nLast action ref index: " + lastActionRefIndex + "\nAkAxeRef: " + akAxeRef + "\nCurrent State: " + GetState() + "\nIs Quest Running? " + WWWBackendQuest.IsRunning())
-    /;
+    ;Debug.Trace("[BCD-WWW] ;Debug test.\nIs furniture in use? " + self.IsFurnitureInUse(false) + ". And ignoring reserved? " + self.IsFurnitureInUse(true) + "\nIs working? " + working + "\nLast action refs: " + lastActionRefs + "\nLast action ref index: " + lastActionRefIndex + "\nAkAxeRef: " + akAxeRef + "\nCurrent State: " + GetState() + "\nIs Quest Running? " + WWWBackendQuest.IsRunning())
+    ;
 EndFunction
 ;//;
 ;  + "\nParen's State: " + parent.GetState()
