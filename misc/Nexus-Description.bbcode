@@ -1,10 +1,13 @@
-[b][size=6]Woodworker's Whim[/size][/b]
+[img]https://raw.githubusercontent.com/BellCubeDev/WoodworkersWhim/main/Images/seperator.png[/img]
+[center][b][size=6]Woodworker's Whim[/size][/b]
 Have you ever been frustrated when you went to chop wood, only for the game to turn you away for lack of an axe—even though there was one leaning against the wall [b][i]right there[/i][/b]? I sure have. I think it's high time to put an end to this madness!
 
 This is where Woodworker's Whim comes in. With this ultra-compatible modification, you can chop wood by borrowing any vanilla-compatible wood-chopping axe within a reasonable (and configurable!) radius.
 
+[img]https://raw.githubusercontent.com/BellCubeDev/WoodworkersWhim/main/Images/seperator.png[/img]
 [size=4][b]Configuration[/b][/size]
 Woodworker's Whim comes with an MCM for your configuration pleasure. Its setting[s]s[/s] can also be configured via console command.
+[/center]
 
 [size=3][b]Allow NPCs[/b][/size]
 A slider controlling how far away the axe has to be to qualify. Uses
@@ -71,6 +74,7 @@ Type: [b]Boolean[/b] (true/false, 1/0)
 Default: [b]False[/b]
 [code]set WWW_Bool_ClayDeposit_NPCs_Value to {VALUE}[/code]
 
+[center][img]https://raw.githubusercontent.com/BellCubeDev/WoodworkersWhim/main/Images/seperator.png[/img]
 [b][size=6]How It's Done[/size][/b]
 Woodworker's Whim was designed from the start to be as compatible as I could manage. Instead of editing the script, it attaches its own [i]alongside[/i] the vanilla script. Instead of storing both possible axes as FormIDs, I read from the same list Bethesda checks against in the wood chopping script. Instead of editing the chopping blocks in the world, I edit them at the "blueprint" (base object) level. I also took the liberty of reducing the script lag to as little as I could manage. In fact, most of the heavy processing isn't even handled by a script.
 
@@ -78,8 +82,9 @@ In addition, I've taken special care to impliment countless failsafes for the mo
 
 With compatibility and speed (the part people [i]really[/i] care about) out of the way, we can talk in more technical terms. Woodworker's Whim uses a Reference Alias to get things done. They're a powerful component of Quests that can do all sorts of crazy things—injecting scripts, keywords, AI Packages, changing names, creating entire new objects on command, stopping you from selling certain things, and even finding objects in the world. That last part is my focus here. This is relatively quite fast and is as reliable as it gets in a Bethesda title.
 
+[img]https://raw.githubusercontent.com/BellCubeDev/WoodworkersWhim/main/Images/seperator.png[/img]
 [b][size=6]A Bit of History[/size][/b]
 Woodworker's Whim—name and all—came from my first project, [url=https://www.nexusmods.com/skyrimspecialedition/mods/47087]Additional Clockwork[/url]. I was brand-new to Skyrim modding, creating some abnormal issues with this whim-satisfying mod (but had no idea how to fix them). But now, with much more experience, I thought of a way around them.
 
 And so after an almost complete rework of the backend using a much more powerful method to find an axe, I realized that this many non-Clockwork users might love the mod, too. And so, it got its own mod page!
-
+[/center]
