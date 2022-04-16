@@ -1,0 +1,29 @@
+name: "Patch Request"
+description: "Request that a patch be made between Woodworker's Whim and another mod (one mod per issue, please)"
+title: "[PATCH-R] {{MOD NAME HERE}}"
+labels:
+  - patch-request
+assignees:
+  - BellCubeDev
+body:
+  - type: input
+    id: modName
+    attributes:
+      label: What mod needs the patch?
+      placeholder: "The Mod of Madness"
+    validations:
+      required: true
+  - type: input
+    id: modLink
+    attributes:
+      label: Where can I find this mod
+      placeholder: "https://example.com"
+    validations:
+      required: true
+  - type: textarea
+    id: patchNotes
+    attributes:
+      label: Any additional notes?
+      placeholder: "### Examples:\nThe mod overwrites the Virtural Machine Adapter field, so a patch must be made manually.\n\nThe mod only overwrites the Model field, so the patch should be pretty simple to make.\n\nI have not explored the extent of the damage, so be prepared for chaos!\n\nThe mod makes signifigant changes to MineOreScript/ResourceFurnitureScript and/or makes scripted changes similarly to how Woodworker's Whim makes its own, requiring the patch to be made by @BellCubeDev specifically."
+    validations:
+      required: false
