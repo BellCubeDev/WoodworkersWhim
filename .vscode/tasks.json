@@ -2,9 +2,13 @@
     "tasks": [{
         "args": [
             "${workspaceFolder}\\dist\\",
+            "${workspaceFolder}\\compiled\\WoodworkersWhim-1.0.1.zip",
+
             "${workspaceFolder}\\dist-translateable\\",
-            "${workspaceFolder}\\compiled\\WoodworkersWhim-1.0.0.zip",
-            "${workspaceFolder}\\compiled\\WoodworkersWhim-translateable-1.0.0.zip"
+            "${workspaceFolder}\\compiled\\WoodworkersWhim-translateable-1.0.0.zip",
+            
+            "${workspaceFolder}\\dist-patch-campfire\\",
+            "${workspaceFolder}\\compiled\\WoodworkersWhim-patch-campfire-1.0.0.zip",
         ],
         "command": ".\\.vscode\\zip.bat",
         "group": {
@@ -18,14 +22,14 @@
             "focus": false,
             "showReuseMessage": false,
             "panel": "dedicated",
-            "close": true
+            //"close": true
         },
         "type": "shell",
         "problemMatcher": []
     }, {
         "args": [
             /* Script */ "${file}",
-            /* Output */ "${workspaceFolder}\\dist\\scripts",
+            /* Output */ "${fileDirname}\\..\\..\\scripts",
             /* Imports */ "${fileDirname};C:\\Program Files (x86)\\Steam\\steamapps\\common\\Skyrim Special Edition\\Data\\source\\Scripts",
         ],
         "command": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Skyrim Special Edition\\Papyrus Compiler\\PapyrusCompile.bat",

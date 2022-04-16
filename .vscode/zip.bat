@@ -4,20 +4,29 @@ ECHO [0m
 ECHO Deleting any previous outputs...
 :: I call a new instance of CMD because I was experiencing oddities using either rd or del in a Batch script.
 :: It would always throw "Access is denied"
-cmd /c "del /q ^"%~3^" "
-cmd /c "del /q ^"%~4^" "
 ECHO.
 ECHO Zipping first folder...
 ECHO.
 ECHO [33m
 cd "%~1"
-7z a -aoa -spe -tzip "%~3" -ir!*
+cmd /c "del /q ^"%~2^" "
+7z a -aoa -spe -tzip "%~2" -ir!*
+ECHO [0m
 ECHO.
 ECHO Zipping second folder...
 ECHO.
 ECHO [33m
-cd "%~2"
+cd "%~3"
+cmd /c "del /q ^"%~4^" "
 7z a -aoa -spe -tzip "%~4" -ir!*
+ECHO [0m
+ECHO.
+ECHO Zipping third folder...
+ECHO.
+ECHO [33m
+cd "%~5"
+cmd /c "del /q ^"%~6^" "
+7z a -aoa -spe -tzip "%~6" -ir!*
 ECHO [0m
 SetLocal EnableDelayedExpansion
 set count=3
