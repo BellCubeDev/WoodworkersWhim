@@ -1,0 +1,17 @@
+<?xml version='1.0'?>
+<PapyrusProject xmlns="PapyrusProject.xsd"
+    Flags="TESV_Papyrus_Flags.flg"
+    Game="sse"
+    Output="..\dist\scripts\"
+    Optimize="true">
+    <Imports>
+        <Import>..\dist\source\scripts</Import>
+        <Import>W:\Modding\EtcSkyrimData\ScriptSources\SkyUI</Import>
+        <Import>W:\Modding\EtcSkyrimData\ScriptSources\SKSE 2.1.5</Import>
+        <Import>W:\Modding\EtcSkyrimData\ScriptSources\Vanilla Regular</Import>
+        <Import>W:\Modding\EtcSkyrimData\ScriptSources\Vanilla Native</Import>
+    </Imports>
+    <Folders>
+        <Folder>..\dist\source\scripts</Folder>
+    </Folders>
+</PapyrusProject>

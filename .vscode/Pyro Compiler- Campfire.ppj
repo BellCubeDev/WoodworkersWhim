@@ -1,0 +1,16 @@
+<?xml version='1.0'?>
+<PapyrusProject xmlns="PapyrusProject.xsd"
+    Flags="TESV_Papyrus_Flags.flg"
+    Game="sse"
+    Output="..\dist\scripts\"
+    Optimize="true">
+    <Imports>
+        <Folder>..\dist-patch-campfire\source\scripts</Folder>
+        <Import>W:\Modding\EtcSkyrimData\ScriptSources\Campfire</Import>
+        <Import>W:\Modding\EtcSkyrimData\ScriptSources\Vanilla Regular</Import>
+        <Import>W:\Modding\EtcSkyrimData\ScriptSources\Vanilla Native</Import>
+    </Imports>
+    <Folders>
+        <Folder>..\dist-patch-campfire\source\scripts</Folder>
+    </Folders>
+</PapyrusProject>

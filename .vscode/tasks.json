@@ -2,11 +2,11 @@
     "tasks": [{
         "args": [
             "${workspaceFolder}\\dist\\",
-            "${workspaceFolder}\\compiled\\WoodworkersWhim-1.0.1.zip",
+            "${workspaceFolder}\\compiled\\WoodworkersWhim-1.0.2.zip",
 
             "${workspaceFolder}\\dist-translateable\\",
             "${workspaceFolder}\\compiled\\WoodworkersWhim-translateable-1.0.0.zip",
-            
+
             "${workspaceFolder}\\dist-patch-campfire\\",
             "${workspaceFolder}\\compiled\\WoodworkersWhim-patch-campfire-1.0.0.zip",
         ],
@@ -28,16 +28,17 @@
         "problemMatcher": []
     }, {
         "args": [
-            /* Script */ "${file}",
-            /* Output */ "${fileDirname}\\..\\..\\scripts",
-            /* Imports */ "${fileDirname};C:\\Program Files (x86)\\Steam\\steamapps\\common\\Skyrim Special Edition\\Data\\source\\Scripts",
+            /* Script */  "${file}",
+            /* Output */  "${fileDirname}\\..\\..\\scripts",
+            /* Imports */ "E:\\SSE_PSCs\\Campfire;E:\\SSE_PSCs\\SkyUI;E:\\SSE_PSCs\\SKSE 2.1.5;E:\\SSE_PSCs\\Vanilla Regular;E:\\SSE_PSCs\\Vanilla Native;${workspaceFolder}\\dist\\source\\scripts", // Handled script directory on its own
         ],
         "command": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Skyrim Special Edition\\Papyrus Compiler\\PapyrusCompile.bat",
+        //"command": "E:\\SSE_PSCs\\_compiler\\PapyrusCompile.bat",
         "group": "build",
         "label": "Compile Current Papyrus Script",
         "presentation": {
             "clear": true,
-            "echo": false,
+            "echo": true,
             "focus": false,
             "showReuseMessage": false,
             "panel": "dedicated",
