@@ -15,7 +15,7 @@ There are three main ways you can contribute:
 
 ## Structure
 
-- [`dist\`](dist/) - The folder containing the FOMOD itself. Short for Distribution
+- [`dist\`](dist/) - The folder containing the mod itself.
 - [`Images\`](Images/) - Folder for images. Includes images used on the Nexus and in the FOMOD as well as PSDs (Photoshop Documents) or other source files for each
 - [`Changes.md`](Changes.md) - Changelog
 <!--
